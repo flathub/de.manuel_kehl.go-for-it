@@ -32,8 +32,8 @@
         {
           "type": "git",
           "url": "https://github.com/mank319/Go-For-It.git",
-          "branch": "release_v1.6",
-          "commit": "5f319139ab978f4cee99612227896c5b7e7300f5"
+          "branch": "release_v1.6.1",
+          "commit": "1507478a328edf22ebf3ba000a6958270d178aa2"
         },
         {
           "type": "file",
