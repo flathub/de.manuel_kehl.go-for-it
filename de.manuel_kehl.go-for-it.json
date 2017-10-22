@@ -3,9 +3,7 @@
   "runtime": "org.gnome.Platform",
   "runtime-version": "3.26",
   "sdk": "org.gnome.Sdk",
-  "command": "go-for-it",
-  "rename-desktop-file": "go-for-it.desktop",
-  "rename-icon": "go-for-it",
+  "command": "de.manuel_kehl.go-for-it",
   "finish-args": [
     /* X11 + XShm access */
     "--share=ipc", "--socket=x11",
@@ -18,8 +16,6 @@
     "--filesystem=~/.config/dconf:ro",
     "--talk-name=ca.desrt.dconf",
     "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
-    /* DBus access */
-    "--own-name=de.manuel-kehl.go-for-it",
     /* Notification access */
     "--talk-name=org.freedesktop.Notifications"
   ],
@@ -31,17 +27,17 @@
       "sources": [
         {
           "type": "git",
-          "url": "https://github.com/mank319/Go-For-It.git",
-          "branch": "release_v1.6.1",
-          "commit": "1507478a328edf22ebf3ba000a6958270d178aa2"
+          "url": "https://github.com/JMoerman/Go-For-It.git",
+          "branch": "1.6.3",
+          "commit": "deb4e744f984c5eea212cc6fb4be4f40b114ceef"
         },
         {
-          "type": "file",
-          "path": "de.manuel_kehl.go-for-it.appdata.xml"
+          /* Temporary workaround with new id */
+          "type": "patch",
+          "path": "go-for-it-app-id.patch"
         }
       ],
       "post-install": [
-        "install -Dm644 de.manuel_kehl.go-for-it.appdata.xml /app/share/appdata/de.manuel_kehl.go-for-it.appdata.xml",
         "install -Dm644 COPYING /app/share/licenses/de.manuel_kehl.go-for-it/COPYING"
       ]
     }
