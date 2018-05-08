@@ -1,0 +1,46 @@
+id: de.manuel_kehl.go-for-it
+runtime: org.gnome.Platform
+runtime-version: 3.28
+sdk: org.gnome.Sdk
+command: de.manuel_kehl.go-for-it
+finish-args:
+  # X11 + XShm access
+  - --share=ipc
+  - --socket=x11
+  # Wayland access
+  - --socket=wayland
+  # Access user files
+  - --filesystem=home
+  # Dconf access
+  - --filesystem=xdg-run/dconf
+  - --filesystem=~/.config/dconf:ro
+  - --talk-name=ca.desrt.dconf
+  - --env=DCONF_USER_CONFIG_DIR=.config/dconf
+  # Notification access
+  - --talk-name=org.freedesktop.Notifications
+build-options:
+  cflags: -O2 -g
+  env: { V: '1' }
+cleanup:
+  - '*.a'
+  - '*.h'
+  - '*.la'
+  - /include
+  - /lib/pkgconfig
+modules:
+  - name: go-for-it
+    buildsystem: cmake-ninja
+    builddir: true
+    sources:
+      - type: git
+        url: 'https://github.com/JMoerman/Go-For-It.git'
+        tag: 1.6.6
+        commit: 4c1a45eb02659883dfdf00854ca5a77c94a99d8b
+        # Temporary workaround until id can be switched to:
+        # com.github.jmoerman.go-for-it
+      - type: patch
+        path: patch/go-for-it/0001-Temporary-app-id-workaround.patch
+      - type: patch
+        path: patch/go-for-it/0002-Fix-and-update-appdata.patch
+    post-install:
+      - install -Dm644 -t /app/share/licenses/de.manuel_kehl.go-for-it ../COPYING
