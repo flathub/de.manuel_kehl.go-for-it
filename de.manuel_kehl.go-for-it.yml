@@ -1,45 +1,44 @@
-{
-  "id": "de.manuel_kehl.go-for-it",
-  "runtime": "org.gnome.Platform",
-  "runtime-version": "3.26",
-  "sdk": "org.gnome.Sdk",
-  "command": "de.manuel_kehl.go-for-it",
-  "finish-args": [
-    /* X11 + XShm access */
-    "--share=ipc", "--socket=x11",
-    /* Wayland access */
-    "--socket=wayland",
-    /* Access user files */
-    "--filesystem=home",
-    /* Dconf access */
-    "--filesystem=xdg-run/dconf",
-    "--filesystem=~/.config/dconf:ro",
-    "--talk-name=ca.desrt.dconf",
-    "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
-    /* Notification access */
-    "--talk-name=org.freedesktop.Notifications"
-  ],
-  "modules": [
-    {
-      "name": "go-for-it",
-      "buildsystem": "cmake",
-      "builddir": "build",
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://github.com/JMoerman/Go-For-It.git",
-          "branch": "1.6.3",
-          "commit": "deb4e744f984c5eea212cc6fb4be4f40b114ceef"
-        },
-        {
-          /* Temporary workaround with new id */
-          "type": "patch",
-          "path": "go-for-it-app-id.patch"
-        }
-      ],
-      "post-install": [
-        "install -Dm644 COPYING /app/share/licenses/de.manuel_kehl.go-for-it/COPYING"
-      ]
-    }
-  ]
-}
+id: de.manuel_kehl.go-for-it
+runtime: org.gnome.Platform
+runtime-version: 3.26
+sdk: org.gnome.Sdk
+command: de.manuel_kehl.go-for-it
+finish-args:
+  # X11 + XShm access
+  - --share=ipc
+  - --socket=x11
+  # Wayland access
+  - --socket=wayland
+  # Access user files
+  - --filesystem=home
+  # Dconf access
+  - --filesystem=xdg-run/dconf
+  - --filesystem=~/.config/dconf:ro
+  - --talk-name=ca.desrt.dconf
+  - --env=DCONF_USER_CONFIG_DIR=.config/dconf
+  # Notification access
+  - --talk-name=org.freedesktop.Notifications
+build-options:
+  cflags: -O2 -g
+  env: { V: '1' }
+cleanup:
+  - '*.a'
+  - '*.h'
+  - '*.la'
+  - /include
+  - /lib/pkgconfig
+modules:
+  - name: go-for-it
+    buildsystem: cmake-ninja
+    builddir: true
+    sources:
+      - type: git
+        url: 'https://github.com/JMoerman/Go-For-It.git'
+        tag: 1.6.3
+        commit: deb4e744f984c5eea212cc6fb4be4f40b114ceef
+        # Temporary workaround until id can be switched to:
+        # com.github.jmoerman.go-for-it
+      - type: patch
+        path: go-for-it-app-id.patch
+    post-install:
+      - install -Dm644 -t /app/share/licenses/de.manuel_kehl.go-for-it ../COPYING
