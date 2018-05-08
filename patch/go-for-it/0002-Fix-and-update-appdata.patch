@@ -1,0 +1,58 @@
+From 4151780fc704397fc47fc7d2e9bae3dd66dc6c1c Mon Sep 17 00:00:00 2001
+From: AsavarTzeth <asavartzeth@gmail.com>
+Date: Tue, 8 May 2018 21:37:33 +0200
+Subject: [PATCH] Fix & update appdata
+
+The AppStream appdata releases need to be ordered with the latest
+release at the top. Reversing the order fixes validation failures,
+that among things prevents a successful Flatpak builds.
+
+This also adds the missing 1.6.6 release.
+---
+ data/go-for-it.appdata.xml.in.in | 24 ++++++++++++++++--------
+ 1 file changed, 16 insertions(+), 8 deletions(-)
+
+diff --git a/data/go-for-it.appdata.xml.in.in b/data/go-for-it.appdata.xml.in.in
+index 301e513..247c260 100644
+--- a/data/go-for-it.appdata.xml.in.in
++++ b/data/go-for-it.appdata.xml.in.in
+@@ -35,6 +35,22 @@ If you already use Todo.txt, beware of the fact, that Go For It! automatically a
+     <value key="x-appcenter-color-primary-text">rgb(255, 255, 255)</value>
+   </custom>
+   <releases>
++    <release version="1.6.6" date="2018-04-17">
++      <description>
++        <p>Improvments:</p>
++        <ul>
++          <li>Updates to the Lithuanian translation.</li>
++        </ul>
++      </description>
++    </release>
++    <release version="1.6.5" date="2018-02-26">
++      <description>
++        <p>Bugfixes:</p>
++        <ul>
++          <li>Strings containing whitespace consisting of multiple spaces were not parsed correctly, which could lead to crashes.</li>
++        </ul>
++      </description>
++    </release>
+     <release version="1.6.4" date="2018-01-04">
+       <description>
+         <p>Improvements:</p>
+@@ -49,13 +65,5 @@ If you already use Todo.txt, beware of the fact, that Go For It! automatically a
+         </ul>
+       </description>
+     </release>
+-    <release version="1.6.5" date="2018-02-26">
+-      <description>
+-        <p>Bugfixes:</p>
+-        <ul>
+-          <li>Strings containing whitespace consisting of multiple spaces were not parsed correctly, which could lead to crashes.</li>
+-        </ul>
+-      </description>
+-    </release>
+   </releases>
+ </component>
+-- 
+2.17.0
+

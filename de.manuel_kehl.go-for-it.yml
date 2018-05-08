@@ -39,6 +39,8 @@ modules:
         # Temporary workaround until id can be switched to:
         # com.github.jmoerman.go-for-it
       - type: patch
-        path: go-for-it-app-id.patch
+        path: patch/go-for-it/0001-Temporary-app-id-workaround.patch
+      - type: patch
+        path: patch/go-for-it/0002-Fix-and-update-appdata.patch
     post-install:
       - install -Dm644 -t /app/share/licenses/de.manuel_kehl.go-for-it ../COPYING
