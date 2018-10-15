@@ -1,7 +1,7 @@
-From 4151780fc704397fc47fc7d2e9bae3dd66dc6c1c Mon Sep 17 00:00:00 2001
+From 7b225b061f35f8646a96bb85e7b0936db546537a Mon Sep 17 00:00:00 2001
 From: AsavarTzeth <asavartzeth@gmail.com>
 Date: Tue, 8 May 2018 21:37:33 +0200
-Subject: [PATCH] Fix & update appdata
+Subject: [PATCH 2/2] Fix and update appdata
 
 The AppStream appdata releases need to be ordered with the latest
 release at the top. Reversing the order fixes validation failures,
@@ -9,50 +9,77 @@ that among things prevents a successful Flatpak builds.
 
 This also adds the missing 1.6.6 release.
 ---
- data/go-for-it.appdata.xml.in.in | 24 ++++++++++++++++--------
- 1 file changed, 16 insertions(+), 8 deletions(-)
+ data/go-for-it.appdata.xml.in.in | 34 ++++++++++++++++----------------
+ 1 file changed, 17 insertions(+), 17 deletions(-)
 
 diff --git a/data/go-for-it.appdata.xml.in.in b/data/go-for-it.appdata.xml.in.in
-index 301e513..247c260 100644
+index f55412b..95b6449 100644
 --- a/data/go-for-it.appdata.xml.in.in
 +++ b/data/go-for-it.appdata.xml.in.in
-@@ -35,6 +35,22 @@ If you already use Todo.txt, beware of the fact, that Go For It! automatically a
+@@ -35,46 +35,46 @@ If you already use Todo.txt, beware of the fact, that Go For It! automatically a
      <value key="x-appcenter-color-primary-text">rgb(255, 255, 255)</value>
    </custom>
    <releases>
-+    <release version="1.6.6" date="2018-04-17">
-+      <description>
-+        <p>Improvments:</p>
-+        <ul>
-+          <li>Updates to the Lithuanian translation.</li>
-+        </ul>
-+      </description>
-+    </release>
-+    <release version="1.6.5" date="2018-02-26">
-+      <description>
-+        <p>Bugfixes:</p>
-+        <ul>
-+          <li>Strings containing whitespace consisting of multiple spaces were not parsed correctly, which could lead to crashes.</li>
-+        </ul>
-+      </description>
-+    </release>
-     <release version="1.6.4" date="2018-01-04">
+-    <release version="1.6.4" date="2018-01-04">
++    <release version="1.6.7" date="2018-10-05">
        <description>
          <p>Improvements:</p>
-@@ -49,13 +65,5 @@ If you already use Todo.txt, beware of the fact, that Go For It! automatically a
+         <ul>
+-          <li>The task list and the rest of the main application window now have the same background color.</li>
++          <li>Added minimal support for creation and completion dates as well as the priority of a task.</li>
++          <li>The creation and completion dates are stored for new tasks.</li>
+         </ul>
+-        <p>Updated translations:</p>
++        <p>Bugfixes:</p>
+         <ul>
+-          <li>Czech</li>
+-          <li>Spanish</li>
+-          <li>Japanese</li>
++          <li>Dragging a selected task could cause the timer to state that all tasks are finished.</li>
          </ul>
        </description>
      </release>
 -    <release version="1.6.5" date="2018-02-26">
--      <description>
++    <release version="1.6.6" date="2018-04-17">
+       <description>
 -        <p>Bugfixes:</p>
--        <ul>
++        <p>Improvments:</p>
+         <ul>
 -          <li>Strings containing whitespace consisting of multiple spaces were not parsed correctly, which could lead to crashes.</li>
--        </ul>
--      </description>
--    </release>
-   </releases>
- </component>
++          <li>Updates to the Lithuanian translation.</li>
+         </ul>
+       </description>
+     </release>
+-    <release version="1.6.6" date="2018-04-17">
++    <release version="1.6.5" date="2018-02-26">
+       <description>
+-        <p>Updated translations:</p>
++        <p>Bugfixes:</p>
+         <ul>
+-          <li>Lithuanian</li>
++          <li>Strings containing whitespace consisting of multiple spaces were not parsed correctly, which could lead to crashes.</li>
+         </ul>
+       </description>
+     </release>
+-    <release version="1.6.7" date="2018-10-05">
++    <release version="1.6.4" date="2018-01-04">
+       <description>
+         <p>Improvements:</p>
+         <ul>
+-          <li>Added minimal support for creation and completion dates as well as the priority of a task.</li>
+-          <li>The creation and completion dates are stored for new tasks.</li>
++          <li>The task list and the rest of the main application window now have the same background color.</li>
+         </ul>
+-        <p>Bugfixes:</p>
++        <p>Updated translations:</p>
+         <ul>
+-          <li>Dragging a selected task could cause the timer to state that all tasks are finished.</li>
++          <li>Czech</li>
++          <li>Spanish</li>
++          <li>Japanese</li>
+         </ul>
+       </description>
+     </release>
 -- 
-2.17.0
+2.17.1
 
