@@ -32,13 +32,11 @@ modules:
     sources:
       - type: git
         url: 'https://github.com/JMoerman/Go-For-It.git'
-        tag: 1.6.7
-        commit: 2ec87bb421e4ee304974eac4cb27f1ce58cfc197
+        tag: 1.6.8
+        commit: 09dee310138864efab0df6cf7a0103241f43d848
         # Temporary workaround until id can be switched to:
         # com.github.jmoerman.go-for-it
       - type: patch
         path: patch/go-for-it/0001-Temporary-app-id-workaround.patch
-      - type: patch
-        path: patch/go-for-it/0002-Fix-and-update-appdata.patch
     post-install:
       - install -Dm644 -t /app/share/licenses/de.manuel_kehl.go-for-it ../COPYING
