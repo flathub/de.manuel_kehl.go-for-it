@@ -1,6 +1,6 @@
 id: de.manuel_kehl.go-for-it
 runtime: org.gnome.Platform
-runtime-version: '3.32'
+runtime-version: '3.34'
 sdk: org.gnome.Sdk
 command: de.manuel_kehl.go-for-it
 finish-args:
@@ -26,6 +26,7 @@ cleanup:
   - /include
   - /lib/pkgconfig
 modules:
+  - "shared-modules/intltool/intltool-0.51.json"
   - name: go-for-it
     buildsystem: cmake-ninja
     builddir: true
