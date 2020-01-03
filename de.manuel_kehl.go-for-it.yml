@@ -12,11 +12,6 @@ finish-args:
   - --socket=wayland
   # Access user files
   - --filesystem=home
-  # Dconf access
-  - --filesystem=xdg-run/dconf
-  - --filesystem=~/.config/dconf:ro
-  - --talk-name=ca.desrt.dconf
-  - --env=DCONF_USER_CONFIG_DIR=.config/dconf
   # Notification access
   - --talk-name=org.freedesktop.Notifications
 cleanup:
