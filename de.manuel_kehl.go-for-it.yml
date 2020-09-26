@@ -34,7 +34,7 @@ modules:
     sources:
       - type: git
         url: 'https://github.com/JMoerman/Go-For-It.git'
-        tag: 1.8.1
-        commit: 5a13ad9b26b9d271d6622937c7e8efc7f00d1c5c
+        tag: 1.8.3
+        commit: 11f6118d186edece4eb6945bb617cb8a4f14e6f8
     post-install:
       - install -Dm644 -t /app/share/licenses/de.manuel_kehl.go-for-it ../COPYING
