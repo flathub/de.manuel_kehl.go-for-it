@@ -10,10 +10,17 @@ finish-args:
   - --socket=fallback-x11
   # Wayland access
   - --socket=wayland
+  # Notification sounds
+  - --socket=pulseaudio
   # Access user files
   - --filesystem=home
   # Notification access
   - --talk-name=org.freedesktop.Notifications
+
+  # Ayatana indicator plugin
+  - --talk-name=org.kde.StatusNotifierWatcher
+  # LauncherEntry indicator plugin
+  - --talk-name=com.canonical.Unity.LauncherEntry
 cleanup:
   - '*.a'
   - '*.h'
@@ -21,7 +28,18 @@ cleanup:
   - /include
   - /lib/pkgconfig
 modules:
-  - "shared-modules/intltool/intltool-0.51.json"
+  - name: libpeas
+    buildsystem: meson
+    config-opts:
+      - "-Dlua51=false"
+      - "-Dvapi=true"
+      - "-Ddemos=false"
+      - "-Dglade_catalog=false"
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/libpeas/1.28/libpeas-1.28.0.tar.xz
+        sha256: 42d91993b46ed50f16add6d9577ecc22beb8e2dffa7101e2232c2b63733b8b15
+  - "shared-modules/libappindicator/libappindicator-gtk3-introspection-12.10.json"
   - name: go-for-it
     buildsystem: cmake-ninja
     builddir: true
@@ -30,11 +48,13 @@ modules:
     config-opts:
       - -DAPP_ID:STRING=de.manuel_kehl.go-for-it
       - -DSCHEMA_PATH:STRING=/de/manuel_kehl/go-for-it
-      - -DICON_UPDATE=OFF
+      - -DICON_UPDATE:BOOL=OFF
+      - -DGLOBAL_PLUGIN_ICONS:BOOL=ON
+      - -DDEFAULT_PLUGINS:STRING=['launcherindicator']
     sources:
       - type: git
         url: 'https://github.com/JMoerman/Go-For-It.git'
-        tag: 1.8.7
-        commit: 4399c1ad217c0406e73d56b1df710dd916030152
+        tag: 1.9.0
+        commit: ff04cb7738cf7883e722239f9a17d4e995e8f4f2
     post-install:
       - install -Dm644 -t /app/share/licenses/de.manuel_kehl.go-for-it ../COPYING
