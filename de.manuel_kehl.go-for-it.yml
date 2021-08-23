@@ -1,6 +1,6 @@
 id: de.manuel_kehl.go-for-it
 runtime: org.gnome.Platform
-runtime-version: '3.38'
+runtime-version: '40'
 sdk: org.gnome.Sdk
 command: de.manuel_kehl.go-for-it
 finish-args:
@@ -55,7 +55,7 @@ modules:
     sources:
       - type: git
         url: 'https://github.com/JMoerman/Go-For-It.git'
-        tag: 1.9.2
-        commit: 612242bc1db0b34d382484dca1eab836104e00ce
+        tag: 1.9.3
+        commit: b2d6c236e0441f070b3f3cb9b63ea539207efc84
     post-install:
       - install -Dm644 -t /app/share/licenses/de.manuel_kehl.go-for-it ../COPYING
