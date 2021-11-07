@@ -1,6 +1,6 @@
 id: de.manuel_kehl.go-for-it
 runtime: org.gnome.Platform
-runtime-version: '40'
+runtime-version: '41'
 sdk: org.gnome.Sdk
 command: de.manuel_kehl.go-for-it
 finish-args:
@@ -14,8 +14,6 @@ finish-args:
   - --socket=pulseaudio
   # Access user files
   - --filesystem=home
-  # Notification access
-  - --talk-name=org.freedesktop.Notifications
 
   # Ayatana indicator plugin
   - --talk-name=org.kde.StatusNotifierWatcher
@@ -55,7 +53,7 @@ modules:
     sources:
       - type: git
         url: 'https://github.com/JMoerman/Go-For-It.git'
-        tag: 1.9.3
-        commit: b2d6c236e0441f070b3f3cb9b63ea539207efc84
+        tag: 1.9.5
+        commit: d68ace2cea42bbf8850d5f5539b97697cebcd50e
     post-install:
       - install -Dm644 -t /app/share/licenses/de.manuel_kehl.go-for-it ../COPYING
