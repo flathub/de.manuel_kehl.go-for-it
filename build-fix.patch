@@ -1,0 +1,27 @@
+From 6b0f86bd403ece8c2f7813e442258881e11925df Mon Sep 17 00:00:00 2001
+From: Michal Vasilek <michal@vasilek.cz>
+Date: Sat, 2 Apr 2022 18:53:20 +0200
+Subject: [PATCH] Fix build with vala 0.56
+
+~/Go-For-It-1.9.6/src/Services/TaskTimer.vala:35.42-35.50: error: value is less accessible than constant `GOFI.TaskTimer.UPDATE_INTERVAL'
+   35 |     public const int64 UPDATE_INTERVAL = 60 * US_C;
+      |                                          ^~~~~~~~~
+
+Closes #172
+---
+ src/Services/TaskTimer.vala | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/Services/TaskTimer.vala b/src/Services/TaskTimer.vala
+index 8f14f252a..2231dc976 100644
+--- a/src/Services/TaskTimer.vala
++++ b/src/Services/TaskTimer.vala
+@@ -32,7 +32,7 @@ public class GOFI.TaskTimer {
+ 
+     private const int64 US_C = 1000000; // μs<->s conversion
+ 
+-    public const int64 UPDATE_INTERVAL = 60 * US_C;
++    private const int64 UPDATE_INTERVAL = 60 * US_C;
+ 
+     /**
+      * A proxy attribute, that does not store any data itself, but provides
