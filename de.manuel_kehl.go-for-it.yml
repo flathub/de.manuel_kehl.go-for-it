@@ -1,12 +1,11 @@
 id: de.manuel_kehl.go-for-it
 runtime: org.gnome.Platform
-runtime-version: '41'
+runtime-version: '45'
 sdk: org.gnome.Sdk
 command: de.manuel_kehl.go-for-it
 finish-args:
   # X11 + XShm access
   - --share=ipc
-  - --socket=x11
   - --socket=fallback-x11
   # Wayland access
   - --socket=wayland
@@ -16,7 +15,7 @@ finish-args:
   - --filesystem=home
 
   # Ayatana indicator plugin
-  - --talk-name=org.kde.StatusNotifierWatcher
+  - --talk-name=org.kde.*
   # LauncherEntry indicator plugin
   - --talk-name=com.canonical.Unity.LauncherEntry
 cleanup:
@@ -35,8 +34,8 @@ modules:
       - "-Dglade_catalog=false"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/libpeas/1.30/libpeas-1.30.0.tar.xz
-        sha256: 0bf5562e9bfc0382a9dcb81f64340787542568762a3a367d9d90f6185898b9a3
+        url: https://download.gnome.org/sources/libpeas/1.36/libpeas-1.36.0.tar.xz
+        sha256: 297cb9c2cccd8e8617623d1a3e8415b4530b8e5a893e3527bbfd1edd13237b4c
   - "shared-modules/libappindicator/libappindicator-gtk3-introspection-12.10.json"
   - "shared-modules/libcanberra/libcanberra.json"
   - name: go-for-it
@@ -55,5 +54,7 @@ modules:
         url: 'https://github.com/JMoerman/Go-For-It.git'
         tag: 1.9.6
         commit: b7c39dc45a0d89fadbaeac1b64a1bf6e497e875f
+      - type: patch
+        path: build-fix.patch
     post-install:
       - install -Dm644 -t /app/share/licenses/de.manuel_kehl.go-for-it ../COPYING
