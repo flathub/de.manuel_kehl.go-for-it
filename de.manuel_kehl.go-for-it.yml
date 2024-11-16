@@ -13,11 +13,9 @@ finish-args:
   - --socket=pulseaudio
   # Access user files
   - --filesystem=home
-
-  # Ayatana indicator plugin
-  - --talk-name=org.kde.*
   # LauncherEntry indicator plugin
   - --talk-name=com.canonical.Unity.LauncherEntry
+  - --talk-name=org.kde.StatusNotifierWatcher
 cleanup:
   - '*.a'
   - '*.h'
