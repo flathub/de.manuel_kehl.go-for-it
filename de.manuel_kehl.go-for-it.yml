@@ -58,3 +58,7 @@ modules:
         path: build-fix.patch
     post-install:
       - install -Dm644 -t /app/share/licenses/de.manuel_kehl.go-for-it ../COPYING
+      # workaround for non-png-icon-in-hicolor-size-folder lint error
+      - mkdir -p /app/share/icons/hicolor/scalable/apps
+      - mv /app/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+      - find /app/share/icons/hicolor -type f -not -path "*scalable*" -not -path "*actions*" -name "*.svg" -delete
