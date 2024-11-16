@@ -56,6 +56,8 @@ modules:
         commit: b7c39dc45a0d89fadbaeac1b64a1bf6e497e875f
       - type: patch
         path: build-fix.patch
+      - type: patch
+        path: fix-appdata.patch
     post-install:
       - install -Dm644 -t /app/share/licenses/de.manuel_kehl.go-for-it ../COPYING
       # workaround for non-png-icon-in-hicolor-size-folder lint error
